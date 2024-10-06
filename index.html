@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" class="no-transition">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitch Category Switcher</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Apply dark mode immediately if it was previously selected
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+</head>
+<body>
+    <div class="dark-mode-switch">
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider round"></span>
+        </label>
+        <span>Dark Mode</span>
+    </div>
+    <div class="container">
+        <h1>Twitch Category Switcher</h1>
+        <div class="input-container">
+            <input type="text" id="category" placeholder="Enter Category">
+            <input type="text" id="title" placeholder="Enter Stream Title">
+            <button onclick="addEntry()">Add Entry</button>
+        </div>
+        <table id="categoryTable">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Stream Title</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table rows will be added here dynamically -->
+            </tbody>
+        </table>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,289 @@
+/* Add this at the beginning of the file */
+html.no-transition,
+html.no-transition * {
+    transition: none !important;
+}
+
+html, body, .container {
+    transition: background-color var(--transition-duration), color var(--transition-duration);
+}
+
+html {
+    background-color: var(--background-light);
+    color: var(--text-light);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+html.dark-mode {
+    background-color: var(--background-dark);
+    color: var(--text-dark);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background-color: transparent;
+}
+
+h1 {
+    color: var(--primary-color);
+    margin-bottom: 30px;
+}
+
+.input-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+input, button {
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input {
+    flex: 1;
+    min-width: 200px;
+    background-color: var(--input-bg-light);
+    color: var(--text-light);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+}
+
+table {
+    border-collapse: collapse; /* Change from separate to collapse */
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: var(--table-bg-light);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    color: var(--text-light);
+}
+
+th {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+td {
+    border-top: 1px solid #e0e0e0; /* Add top border to cells instead of bottom */
+}
+
+tr:first-child td {
+    border-top: none; /* Remove top border for first row in tbody */
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+.remove-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.15s ease, transform 0.15s ease, background-color 0.15s ease; /* Reduced from 0.2s to 0.15s */
+    opacity: 0;
+    transform: scale(0.8);
+    line-height: 1;
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Fade in the remove button when hovering over the row */
+tr:hover .remove-btn {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.15s ease 0.05s, transform 0.15s ease 0.05s, background-color 0.15s ease; /* Reduced delay to 0.05s and duration to 0.15s */
+}
+
+/* Change background color on button hover, without delay */
+.remove-btn:hover {
+    background-color: var(--secondary-color);
+    transition: background-color 0.15s ease; /* Reduced from 0.2s to 0.15s */
+}
+
+/* Fade out the remove button when the row is no longer hovered */
+tr .remove-btn {
+    transition: opacity 0.15s ease 0.05s, transform 0.15s ease 0.05s, background-color 0.15s ease; /* Reduced delay to 0.05s and duration to 0.15s */
+}
+
+/* Dark mode styles */
+html.dark-mode body {
+    background-color: var(--background-dark);
+}
+
+html.dark-mode input {
+    background-color: var(--input-bg-dark);
+    color: var(--text-dark);
+}
+
+html.dark-mode table {
+    background-color: var(--table-bg-dark);
+}
+
+html.dark-mode th {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+html.dark-mode td {
+    border-color: #3F3F45;
+    color: var(--text-dark);
+}
+
+html.dark-mode .remove-btn {
+    background-color: var(--secondary-color);
+    color: var(--background-dark);
+}
+
+html.dark-mode .remove-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Dark mode switch styles */
+.dark-mode-switch {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin-right: 10px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--primary-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+@media (max-width: 600px) {
+    input, button {
+        width: 100%;
+    }
+}
+
+/* Add this new style to make the "Action" column narrower */
+#categoryTable th:last-child,
+#categoryTable td:last-child {
+    width: 40px;
+    padding: 0;
+    text-align: center;
+}
+
+:root {
+    --primary-color: #6441A4;
+    --secondary-color: #B9A3E3;
+    --background-light: #F5F5F5;
+    --background-dark: #1F1F23;
+    --text-light: #333;
+    --text-dark: #F1F1F1;
+    --transition-duration: 0.3s;
+    --input-bg-light: white;
+    --input-bg-dark: #3F3F45;
+    --table-bg-light: white;
+    --table-bg-dark: #2F2F35;
+    --row-hover-light: #f0f0f0;
+    --row-hover-dark: #3A3A40;
+}
+
+html, body, .container, input, table, th, td, .remove-btn {
+    transition: background-color var(--transition-duration), 
+                color var(--transition-duration), 
+                border-color var(--transition-duration);
+}
+
+table {
+    overflow: hidden; /* Ensure border-radius is applied to child elements */
+}
+
+tr {
+    transition: background-color var(--transition-duration);
+}
+
+/* Hover effect for light mode */
+tr:hover td {
+    background-color: var(--row-hover-light);
+}
+
+/* Hover effect for dark mode */
+html.dark-mode tr:hover td {
+    background-color: var(--row-hover-dark);
+}
