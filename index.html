@@ -13,6 +13,9 @@
     </script>
 </head>
 <body>
+    <div class="header-section">
+        <h1>Twitch Category Switcher</h1>
+    </div>
     <div class="dark-mode-switch">
         <label class="switch">
             <input type="checkbox" id="darkModeToggle">
@@ -21,11 +24,10 @@
         <span>Dark Mode</span>
     </div>
     <div class="container">
-        <h1>Twitch Category Switcher</h1>
         <div class="input-container">
             <input type="text" id="category" placeholder="Enter Category">
             <input type="text" id="title" placeholder="Enter Stream Title">
-            <button onclick="addEntry()">Add Entry</button>
+            <button onclick="addEntry()">Add</button>
         </div>
         <table id="categoryTable">
             <thead>

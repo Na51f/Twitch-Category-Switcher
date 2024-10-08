@@ -1,5 +1,23 @@
 // Load saved entries when the page loads
-document.addEventListener('DOMContentLoaded', loadEntries);
+document.addEventListener('DOMContentLoaded', () => {
+    loadEntries();
+    setTimeout(() => {
+        document.documentElement.classList.remove('no-transition');
+    }, 100);
+});
+
+// Dark mode toggle
+const darkModeToggle = document.getElementById('darkModeToggle');
+darkModeToggle.addEventListener('change', () => {
+    document.documentElement.classList.toggle('dark-mode');
+    localStorage.setItem('darkMode', darkModeToggle.checked);
+});
+
+// Check for saved dark mode preference and apply it immediately
+if (localStorage.getItem('darkMode') === 'true') {
+    darkModeToggle.checked = true;
+    document.documentElement.classList.add('dark-mode');
+}
 
 function addEntry() {
     const category = document.getElementById('category').value;
@@ -68,23 +86,3 @@ function loadEntries() {
         });
     }
 }
-
-// Dark mode toggle
-const darkModeToggle = document.getElementById('darkModeToggle');
-darkModeToggle.addEventListener('change', () => {
-    document.documentElement.classList.toggle('dark-mode');
-    localStorage.setItem('darkMode', darkModeToggle.checked);
-});
-
-// Check for saved dark mode preference and apply it immediately
-if (localStorage.getItem('darkMode') === 'true') {
-    darkModeToggle.checked = true;
-    document.documentElement.classList.add('dark-mode');
-}
-
-// Remove the no-transition class after a short delay
-window.addEventListener('DOMContentLoaded', (event) => {
-    setTimeout(() => {
-        document.documentElement.classList.remove('no-transition');
-    }, 100);
-});
