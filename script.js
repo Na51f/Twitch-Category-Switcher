@@ -1,3 +1,6 @@
+let selectedRowId = null;
+let rowCounter = 0;
+
 // Load saved entries when the page loads
 document.addEventListener('DOMContentLoaded', () => {
     loadEntries();
@@ -50,14 +53,26 @@ function addRowToTable(category, title) {
     const removeButton = document.createElement('button');
     removeButton.textContent = '×';
     removeButton.className = 'remove-btn';
-    removeButton.onclick = function() {
+    removeButton.onclick = function(event) {
+        event.stopPropagation(); // Prevent row selection when clicking the remove button
         removeRow(this);
     };
     cell3.appendChild(removeButton);
+
+    // Add a unique id to the row
+    newRow.id = `row-${rowCounter++}`;
+
+    // Add click event listener for row selection
+    newRow.addEventListener('click', function() {
+        selectRow(this);
+    });
 }
 
 function removeRow(button) {
     const row = button.parentNode.parentNode;
+    if (row.id === selectedRowId) {
+        selectedRowId = null;
+    }
     row.parentNode.removeChild(row);
     saveEntries();
 }
@@ -85,4 +100,20 @@ function loadEntries() {
             addRowToTable(entry.category, entry.title);
         });
     }
+}
+
+function selectRow(row) {
+    // Remove 'selected' class from previously selected row
+    if (selectedRowId) {
+        document.getElementById(selectedRowId).classList.remove('selected');
+    }
+
+    // Add 'selected' class to clicked row
+    row.classList.add('selected');
+
+    // Update selectedRowId
+    selectedRowId = row.id;
+
+    console.log(`Selected row ID: ${selectedRowId}`);
+    // You can perform any other actions with the selected row here
 }
